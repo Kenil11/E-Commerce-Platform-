@@ -1,0 +1,69 @@
+// 1. Model => Users 
+// Fields :
+// userType: ["normal-user","company-owner","company-sales-user","super-admin","warehouse-owner","delivery-user","transportation-owner","customer-support"]
+// notification: place
+// profilePic : Profile Picture 
+// age : Age 
+// email: Email-id 
+// fullName : Name of the user 
+
+// Model => User-Permission 
+
+// 2. Model=> Company 
+// Fields :
+// companyName: Name of the Company
+// companyAddress: Address of the company
+// companyDetails: Details taken from the company for the details
+// companyPhotos: Photos uploaded by the company
+
+// 3. Model => Product 
+// Fields : 
+// productName : Name of the product 
+// productCode : Code of the product 
+// productStock : Stock of the product 
+// companyId : Company Id for doing many to one relation 
+// productPhotos : Photos of the products 
+// productType : Refurbished | New | Damaged | Discounted
+// productCategory : Category of the product 
+
+// 4. Model => Review 
+// Fields : 
+// Header : Title Of the Review 
+// Score : It is Score given to product out of 10 
+// description : It is brief given to the product 
+// productId: It is id of the product to make one to one relation 
+// photosOfReview : It is photos of Review
+// verified : It is tick mark that review is verified 
+
+// 5. Model => Auth 
+// Fields : 
+// type: Login | Register 
+// email: email id used for login | Register
+// ip: ip of the user 
+// response : {
+    httpStatus ,
+    message ,
+    payload ,
+    device , 
+    location
+}
+
+// 6. Model => Transaction 
+
+// 7. Model => Warehouse 
+
+// 8. Model => Delivery
+
+// 9. Model => productOrderedByUser 
+// Fields : 
+// productId : Product Id to do one to one mapping 
+// userId : User who ordered the product 
+// transactionId : Transaction to map payment 
+// status : Shipped | In Transit | Out Of Delivery | Delivered | Pending | Delayed 
+// deliveryIds : [] : Multiple Delivery From getting shipped to the user home 
+
+// 10. Model => discount 
+// Fields : 
+// productCategory : "Category Of Products" | "All"
+// discountPercentage : Number of percentage to give discount 
+// expiryTime : Time when the coupon expires 
