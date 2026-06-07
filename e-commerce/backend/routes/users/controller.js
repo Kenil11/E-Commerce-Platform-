@@ -1,11 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const model = require("./model");
-const { hashPassword, comparePassword } = require("../../service/hashService");
+const { hashPassword, comparePassword } = require("../../service/hash.service");
 const {
   responseSuccess,
   responseError,
   responseValidationError,
-} = require("../../service/responseBuilder");
+} = require("../../service/response.service");
 
 exports.getUsers = asyncHandler(async (req, res) => {
   const query = req.query;
@@ -14,7 +14,7 @@ exports.getUsers = asyncHandler(async (req, res) => {
 
   if (!users || users.length === 0) {
     const error = new Error("No users found");
-    error.statusCode = 204;
+    error.statusCode = 404;
     throw error;
   }
 
@@ -51,7 +51,7 @@ exports.getUserById = asyncHandler(async (req, res) => {
 
   if (!user) {
     const error = new Error("User not found");
-    error.statusCode = 204;
+    error.statusCode = 404;
     throw error;
   }
 
@@ -66,7 +66,7 @@ exports.updateUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     const error = new Error("User not found");
-    error.statusCode = 204;
+    error.statusCode = 404;
     throw error;
   }
 
@@ -88,7 +88,7 @@ exports.deleteUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     const error = new Error("User not found");
-    error.statusCode = 204;
+    error.statusCode = 404;
     throw error;
   }
 

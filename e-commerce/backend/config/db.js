@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const env = require("../constant/env");
-const { info, error } = require("../service/loggerBuilder");
+const { info, error } = require("../service/log.service");
 
 const connectDB = async () => {
   try {

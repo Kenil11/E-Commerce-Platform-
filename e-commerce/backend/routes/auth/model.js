@@ -27,28 +27,30 @@ const responseSchema = new mongoose.Schema(
   { _id: false },
 );
 
-const authSchema = new mongoose.Schema({
-  type: {
-    type: String,
-    enum: ["Login", "Register"],
-    required: true,
+const authSchema = new mongoose.Schema(
+  {
+    type: {
+      type: String,
+      enum: ["Login", "Register", "Logout"],
+      type: String,
+      required: true,
+    },
+    ip: {
+      type: String,
+      required: true,
+    },
+    userAgent: {
+      type: String,
+      required: true,
+    },
+    response: {
+      type: responseSchema,
+      required: true,
+    },
   },
-  email: {
-    type: String,
-    required: true,
+  {
+    timestamps: true,
   },
-  ip: {
-    type: String,
-    required: true,
-  },
-  userAgent: {
-    type: String,
-    required: true,
-  },
-  response: {
-    type: responseSchema,
-    required: true,
-  },
-});
+);
 
 module.exports = mongoose.model(GlobalConstant.AUTH, authSchema);

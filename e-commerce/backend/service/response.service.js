@@ -1,4 +1,4 @@
-const { error, info, log, warn } = require("./loggerBuilder");
+const { error, info, log, warn } = require("./log.service");
 
 const SUCCESS = "success";
 const ERROR = "error";

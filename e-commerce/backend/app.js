@@ -7,6 +7,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xssClean = require("xss-clean");
 const compression = require("compression");
 const path = require("node:path");
+const cookieParser = require("cookie-parser");
 const { morganMiddleware } = require("./utils/morganConfig");
 const errorHandler = require("./middleware/errorHandler");
 const connectDB = require("./config/db");
@@ -20,9 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(hpp());
-app.use(mongoSanitize());
-app.use(xssClean());
+// app.use(mongoSanitize());
+// app.use(xssClean());
 app.use(compression());
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "..", env.STATIC_FILES_PATH)));
 
