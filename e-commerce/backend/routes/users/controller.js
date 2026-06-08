@@ -6,6 +6,7 @@ const {
   responseError,
   responseValidationError,
 } = require("../../service/response.service");
+const { uploadToCloudinary } = require("../../service/cloudinary.service");
 
 exports.getUsers = asyncHandler(async (req, res) => {
   const query = req.query;
@@ -25,6 +26,10 @@ exports.createUser = asyncHandler(async (req, res) => {
   const reqObj = req.body;
 
   const existingUser = await model.findOne({ email: reqObj.email });
+
+  if (req.files) {
+    reqObj.profilePicture = uploadToCloudinary;
+  }
 
   if (existingUser) {
     const error = new Error("Email already exists");
@@ -68,6 +73,10 @@ exports.updateUser = asyncHandler(async (req, res) => {
     const error = new Error("User not found");
     error.statusCode = 404;
     throw error;
+  }
+
+   if (req.files) {
+    reqObj.profilePicture = uploadToCloudinary;
   }
 
   if (reqObj.password) {

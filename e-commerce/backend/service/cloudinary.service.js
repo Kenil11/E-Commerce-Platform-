@@ -1,19 +1,25 @@
 const cloudinary = require("../config/cloudinary");
+const streamifier = require("streamifier");
 
 const uploadToCloudinary = async (filePath) => {
-  try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      folder: "e-commerce",
-    });
-    return {
-      url: result.secure_url,
-      public_id: result.public_id,
-    };
-  } catch (error) {
-    const error = new Error("Failed to upload image to Cloudinary");
-    error.statusCode = 500;
-    throw error;
-  }
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        folder: "e-commerce",
+      },
+      (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve({
+          url: result.secure_url,
+          public_id: result.public_id,
+        });
+      },
+    );
+
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
 };
 
 module.exports = { uploadToCloudinary };
