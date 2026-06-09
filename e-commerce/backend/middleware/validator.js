@@ -1,5 +1,3 @@
-const { validate } = require("../routes/auth/model");
-
 const validator = (schema) => {
   return (req, res, next) => {
     const result = schema.safeParse({
@@ -12,7 +10,7 @@ const validator = (schema) => {
       const error = new Error(
         result.error?.issues?.map((issues) => issues.message),
       );
-      ErrorEvent.statusCode = 400;
+      error.statusCode = 400;
 
       return next(error);
     }
@@ -25,4 +23,4 @@ const validator = (schema) => {
   };
 };
 
-module.exports = validate;
+module.exports = validator;

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { GlobalConstant } = require("../../constant/dbConstant");
+const { userTypesConstants } = require("./constants");
 
 const userSchema = new mongoose.Schema(
   {
@@ -24,7 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     userType: {
       type: String,
-      enum: ["Customer", "Super-Admin", "Customer-Care", "Admin"],
+      enum: userTypesConstants,
       default: "Customer",
     },
     manager: {

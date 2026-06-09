@@ -12,7 +12,12 @@ const password = z
   .min(8, "Password should be of min 8 character")
   .max(100);
 
+//3. Blank Object
+
+const emptyObject = z.object({});
+
 module.exports = {
   objectId,
   password,
+  emptyObject,
 };
